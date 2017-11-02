@@ -1,24 +1,22 @@
 package org.anadiait.Buffer;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 public class Buffer {
-  private Queue buffer;
+  private Queue<Object> buffer;
   private int capacity;
-  int np = 0; //number of put operations
-  int ng = 0; //number of get operations
+  int numberPutOperation = 0; // number of put operations numberPutOperations = np (old)
+  int numberGetOperations = 0; //number of get operations numberGetOperations = ng (old)
 
   /**
    * Constructor
    * 
    * @param bufferSize
    */
-  public Buffer(int bsize) {
-    capacity = bsize;
-    buffer = new LinkedList();
+  public Buffer(int bufferSize) { // bufferSize = bsize (old)
+    capacity = bufferSize;
+    buffer = new LinkedList<Object>();
   }
 
   public void put(Object element) {
@@ -28,7 +26,7 @@ public class Buffer {
     System.out.println("Element inserted");
 
     buffer.add(element);
-    np++;
+    numberPutOperation++;
   }
 
   public Object get() throws Exception {
@@ -38,7 +36,7 @@ public class Buffer {
     Object value = buffer.remove();
     System.out.println("Element extracted");
 
-    ng++;
+    numberGetOperations++;
     return value;
   }
 
@@ -50,11 +48,11 @@ public class Buffer {
     return capacity - buffer.size();
   }
 
-  public int getCapacity() { //gc = getCapacity
+  public int getCapacity() { // getCapacity = gc (old)
     return capacity;
   }
 
   public double getNumberOfOperations() {
-    return np + ng;
+    return numberPutOperation + numberGetOperations;
   }
 }
