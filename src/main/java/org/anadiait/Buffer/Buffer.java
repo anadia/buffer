@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Buffer {
-  private Queue<Object> buffer;
+  private Queue<Object> queueBuffer; // rename buffer to queueBuffer
   private int capacity;
   int numberPutOperation = 0; // number of put operations numberPutOperations = np (old)
   int numberGetOperations = 0; //number of get operations numberGetOperations = ng (old)
@@ -16,24 +16,24 @@ public class Buffer {
    */
   public Buffer(int bufferSize) { // bufferSize = bsize (old)
     capacity = bufferSize;
-    buffer = new LinkedList<Object>();
+    queueBuffer = new LinkedList<Object>();
   }
 
   public void put(Object element) {
-    if (buffer.size() == capacity)
+    if (queueBuffer.size() == capacity)
       System.exit(-1);;
 
     System.out.println("Element inserted");
 
-    buffer.add(element);
+    queueBuffer.add(element);
     numberPutOperation++;
   }
 
   public Object get() throws Exception {
-    if (buffer.isEmpty())
+    if (queueBuffer.isEmpty())
       throw new Exception();
 
-    Object value = buffer.remove();
+    Object value = queueBuffer.remove();
     System.out.println("Element extracted");
 
     numberGetOperations++;
@@ -41,11 +41,11 @@ public class Buffer {
   }
 
   public int GetNumberOfElements() {
-    return buffer.size();
+    return queueBuffer.size();
   }
 
   public int get_number_of_holes() {
-    return capacity - buffer.size();
+    return capacity - queueBuffer.size();
   }
 
   public int getCapacity() { // getCapacity = gc (old)
